@@ -11,13 +11,12 @@ RSpec.describe Animal, type: :model do
 
     animal = Animal.create name:'name', kingdom:'sjofjdof'
 
-    expect(animal.errors[:name]).to_not be_empty
+    expect(animal.errors[:latin_name]).to_not be_empty
   end
   it "does not have the same common and latin name" do
-    animal = Animal.create name:'hoooooo' latin_name:'hoooooo'
-    expect(animal.errors.[:name]).not_to eq(:latin_name)
+    animal = Animal.create name:'hoooooo', latin_name:'hoooooo'
+    expect(animal.errors[:name]).not_to eq(:latin_name)
   end
-end
   it 'has unique names' do
     Animal.create(name:'elllo', latin_name:'laasdfsd', kingdom:'asdfasdfa')
     animal = Animal.create(name:'elllo', latin_name:'latsdffdsin', kingdom:'asdfgasgdasfd')
